@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "QueriesPage";
+}
+
+<h2 style="color: #6f6d6b; text-shadow: 1px 1px 9px rgba(1, 0, 0, 0.5);">Ricerca le prenotazioni</h2>
+
+<div class="w-100 h-50 d-flex justify-content-center align-content-center ">
+    <div class="col-4">
+        <h3>Ricerca prenotazioni per codice fiscale cliente</h3>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" id="SearchCF" placeholder="Codice Fiscale" aria-label="Search">
+            <button class="btn btn-primary" type="button" id="GetBooksCF">Ricerca</button>
+        </form>
+        <br />
+    </div>
+</div>
+
+<div class="w-100 h-50 d-flex justify-content-center align-content-center ">
+    <div class="col-4">
+        <h3>Ricerca prenotazioni per tipo pensione</h3>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" id="SearchType" placeholder="Tipologia Pensione" aria-label="Search">
+            <button class="btn btn-primary" type="button" id="GetBooksType">Ricerca</button>
+        </form>
+    </div>
+</div>
+
+<div id="showInfo"></div>
+
+<script type="text/javascript">
+    // Attendere che il documento sia pronto
+    $(document).ready(function () {
+        // Gestore degli eventi per il pulsante "Ricerca prenotazioni per codice fiscale cliente"
+        $("#GetBooksCF").click(function () {
+            var CF = $('#SearchCF').val(); // Ottenere il valore del campo di input
+            $('#showInfo').empty(); // Svuotare il contenuto del div "showInfo"
+            $.ajax({
+                method: 'GET',
+                data: { 'CF': CF }, // Passare il valore di CF come parametro
+                url: '/Queries/GetBookingsByCF', // URL del metodo lato server
+                success: function (r) {
+                    $.each(r, function (index, valore) {
+                        // Aggiungere una riga di tabella con le informazioni sulla prenotazione al div "showInfo"
+                        $("#showInfo").append("<table class=\"table table-info\">" +
+                            "<thead><tr><th scope=\"col\">Pren. Nr</th>" +
+                            "<th scope=\"col\">Cliente</th>" +
+                            "<th scope=\"col\">Camera</th>" +
+                            "<th scope=\"col\">Tipologia</th>" +
+                            "<th scope=\"col\">Tariffa</th>" +
+                            "</tr></thead><tbody>" +
+                            "<tr><th scope=\"row\">" + valore.IdPrenotazione + "</th>" +
+                            "<td>" + valore.Cliente + "</td>" +
+                            "<td>" + valore.NrCamera + "</td>" +
+                            "<td>" + valore.Pensione + "</td>" +
+                            "<td>" + valore.Prezzo + " €</td></tr>" +
+                            "</tbody></table>"
+                        );
+                    })
+                }
+            })
+        })
+
+        // Gestore degli eventi per il pulsante "Ricerca prenotazioni per tipo pensione"
+        $("#GetBooksType").click(function () {
+            var Type = $('#SearchType').val(); // Ottenere il valore del campo di input
+            $('#showInfo').empty(); // Svuotare il contenuto del div "showInfo"
+            $.ajax({
+                method: 'GET',
+                data: { 'Type': Type }, // Passare il valore di Type come parametro
+                url: '/Queries/GetBookingsByType', // URL del metodo lato server
+                success: function (r) {
+                    $.each(r, function (index, valore) {
+                        // Aggiungere un elenco con le informazioni sulla prenotazione al div "showInfo"
+                        $("#showInfo").append("<ul class=\"list-group\">" +
+                            "<li class=\"list-group-item active\" aria-current=\"true\"> Totale prenotazioni</li>" +
+                            "<li class=\"list-group-item\">Tipologia: " + valore.Pensione + "</li>" +
+                            "<li class=\"list-group-item\">" + valore.TotPren + "</li>" +
+                            "</ul>"
+                        );
+                    })
+                }
+            })
+        })
+    })
+</script>

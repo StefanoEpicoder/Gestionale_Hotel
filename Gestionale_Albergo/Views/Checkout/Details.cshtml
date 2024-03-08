@@ -1,0 +1,102 @@
+﻿@model Gestionale_Albergo.Models.Prenotazioni
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <h4>Dettagli Checkout</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPrenotazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdPrenotazione)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NrCamera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrCamera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPren)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPren)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pensione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pensione)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acconto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acconto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saldo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saldo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Torna alla lista prenotazioni", "ListaCk")
+</p>

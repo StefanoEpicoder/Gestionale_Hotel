@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Gestionale_Albergo.Models.Clienti>
+
+@{
+    ViewBag.Title = "CustomList";
+}
+
+<h2 style="color: #6f6d6b; text-shadow: 1px 1px 9px rgba(1, 0, 0, 0.5)";>Clienti</h2>
+
+@if (ViewBag.msgerror != null)
+{
+    <div class="alert alert-warning">@ViewBag.msgerror</div>
+}
+
+<p>
+    @Html.ActionLink("Inserisci nuovo cliente", "Create", null, new { style = "text-decoration: none; color:#6f6d6b; border-radius: 5px; border: 1px solid #6f6d6b; padding: 5px;", onmouseover = "this.style.color='#0D6EFD'", onmouseout = "this.style.color='#6f6d6b'" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Citta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prov)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contatto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Citta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contatto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "Edit", new { id = item.IdCliente }, new { @class = "text-decoration-none text-light bg-primary p-1 rounded-pill" })
+                @Html.ActionLink("Dettagli", "Details", new { id = item.IdCliente }, new { @class = "text-decoration-none text-light bg-info p-1 rounded-pill" })
+                @Html.ActionLink("Elimina", "Delete", new { id = item.IdPrenotazione, idCliente = item.IdCliente }, new { @class = "text-decoration-none text-light bg-danger p-1 rounded-pill" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,109 @@
+﻿@model Gestionale_Albergo.Models.Prenotazioni
+
+@{
+    ViewBag.Title = "Edit";
+}
+<br />
+<h4>Modifica Prenotazione</h4>
+
+
+@if (ViewBag.msgerror != null)
+{
+    <div class="alert alert-warning">@ViewBag.msgerror</div>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+
+        @Html.HiddenFor(model => model.IdPrenotazione, new { htmlAttributes = new { @class = "form-control" } })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdCliente, new SelectList(ViewBag.ListaClienti, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataPren, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DataPren, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.DataPren, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NrCamera, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.NrCamera, new SelectList(ViewBag.ListaCamere, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NrCamera, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Acconto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{Html.EnableClientValidation(false);}
+                @Html.EditorFor(model => model.Acconto, new { htmlAttributes = new { @class = "form-control" } })
+                @{Html.EnableClientValidation(true);}
+                @*@Html.ValidationMessageFor(model => model.Acconto, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Prezzo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{Html.EnableClientValidation(false);}
+                @Html.EditorFor(model => model.Prezzo, new { htmlAttributes = new { @class = "form-control" } })
+                @{Html.EnableClientValidation(true);}
+                @*@Html.ValidationMessageFor(model => model.Prezzo, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pensione, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Pensione, new SelectList(ViewBag.TipoPensioni, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Pensione, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salva" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

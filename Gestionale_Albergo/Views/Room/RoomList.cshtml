@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Gestionale_Albergo.Models.Camere>
+
+@{
+    ViewBag.Title = "RoomList";
+}
+<h2 style="color: #6f6d6b; text-shadow: 1px 1px 9px rgba(1, 0, 0, 0.5);">Camere</h2>
+@if (ViewBag.msgerror != null)
+{
+    <div class="alert alert-warning">@ViewBag.msgerror</div>
+}
+
+
+<p>
+    @Html.ActionLink("Inserisci una nuova camera", "Create", null, new { style = "text-decoration: none; color:#6f6d6b; border-radius: 5px; border: 1px solid #6f6d6b; padding: 5px;", onmouseover = "this.style.color='#0D6EFD'", onmouseout = "this.style.color='#6f6d6b'" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NrCamera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrCamera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descrizione)
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "Edit", new { id=item.NrCamera }, new { @class = "text-decoration-none text-light bg-primary p-1 rounded-pill" })
+                @Html.ActionLink("Elimina", "Delete", new { id = item.NrCamera }, new { @class = "text-decoration-none text-light bg-danger p-1 rounded-pill" })
+            </td>
+        </tr>
+    }
+
+</table>

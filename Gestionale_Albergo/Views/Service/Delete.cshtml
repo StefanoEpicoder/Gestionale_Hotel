@@ -1,0 +1,87 @@
+﻿@model Gestionale_Albergo.Models.Servizi
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Sicuro di voler cancellare questo servizio?</h3>
+<div>
+    <h4>Dettagli Servizio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdServizio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdServizio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servizio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servizio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPrenotazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdPrenotazione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NrCamera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrCamera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente)
+        </dd>
+
+    </dl>
+    <br />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Elimina Servizio" class="btn btn-info" /> |
+        </div>
+    }
+</div>

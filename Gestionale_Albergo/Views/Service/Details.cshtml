@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Gestionale_Albergo.Models.Servizi>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3 class="m-3">Dettagli servizi camera: @ViewBag.NrCamera</h3>
+<h3 class="m-3">Prenotazione nr: @ViewBag.Prenotazione</h3>
+<h3 class="m-3">Cliente: @ViewBag.Cliente</h3>
+<p>
+    @Html.ActionLink("Aggiungi Servizio", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdServizio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPrenotazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrCamera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servizio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdServizio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdPrenotazione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrCamera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servizio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prezzo)
+        </td>
+        <td>
+            @Html.ActionLink("Modifica", "Edit", new { id = item.IdServizio }) |
+            @Html.ActionLink("Elimina", "Delete", new { id = item.IdServizio })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="text-end">
+    <h2>Totale servizi: @ViewBag.TotServices € </h2>
+</div>

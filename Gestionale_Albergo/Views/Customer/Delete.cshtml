@@ -1,0 +1,96 @@
+﻿@model Gestionale_Albergo.Models.Clienti
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div>
+    <h4 class="m-3">Eliminando questo record verranno eliminate tutte le prenotazioni correlate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cognome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Citta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Citta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contatto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contatto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPrenotazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdPrenotazione)
+        </dd>
+
+    </dl>
+    <br />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <div class="alert alert-warning">Sicuro di voler cancellare questo cliente?</div>
+    <input type="submit" value="Elimina Cliente" class="btn btn-warning" /> 
+
+</div>
+    }
+</div>

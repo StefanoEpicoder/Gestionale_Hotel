@@ -1,0 +1,130 @@
+﻿@model Gestionale_Albergo.Models.Clienti
+
+@{
+    ViewBag.Title = "Details";
+}
+<br />
+<h2>Dettagli Cliente</h2>
+
+<div>
+ 
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </dt>
+
+        <dd>
+           <input id="idCliente" value=@Html.DisplayFor(model => model.IdCliente) /> 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cognome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Citta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Citta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contatto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contatto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPrenotazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdPrenotazione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifica", "Edit", new { id = Model.IdCliente }, new { style = "text-decoration: none; color:#6f6d6b; border-radius: 5px; border: 1px solid #6f6d6b; padding: 5px;", onmouseover = "this.style.color='#0D6EFD'", onmouseout = "this.style.color='#6f6d6b'" })
+</p>
+
+<div>
+    <button class="btn btn-primary" id="Bookings">Dettagli della prenotazione</button>
+    <div id="ShowBook" class="row">
+        
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#Bookings").click(function () {
+            var idCliente = $('#idCliente').val();
+            $('#ShowBook').empty();
+            $.ajax({
+                method: 'GET',
+                data: { 'id': idCliente },
+                url: '/Customer/GetBookingsById',
+                success: function (p) {
+                    $.each(p, function (index, valore) {
+                        
+                        $("#ShowBook").append("<div class=\"card\" style=\"width: 23rem;\">" +
+                            " <div class=\"card-header\"> Prenotazione nr" + valore.IdPrenotazione + 
+                            " </div > <ul class=\"list-group list-group-flush\">" +
+                            " <li class=\"list-group-item\">Camera nr " + valore.NrCamera + "</li>" +
+                            " <li class=\"list-group-item\">Tipologia: " + valore.Pensione + "</li>" +
+                            " <li class=\"list-group-item\">Tariffa soggiorno: " + valore.Prezzo + " €</li>" +
+                            " <li class=\"list-group-item\">Acconto: " + valore.Acconto + " €</li >" +
+                            " <li class=\"list-group-item\">Tot. servizi richiesti: " + valore.Tot + " </li >" +
+                            " <li class=\"list-group-item\">Ancora da saldare: " + valore.Saldo + " </li ></ul > "
+                        );
+                    })
+                }
+                })
+
+        }
+
+        )
+    })
+</script>

@@ -1,0 +1,53 @@
+﻿@model Gestionale_Albergo.Models.Camere
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@if (ViewBag.msgBooking != null)
+{
+    <div class="alert alert-warning">@ViewBag.msgBooking</div>
+}
+
+<h4 class="m-3">Eliminando questa camera verranno eliminate tutte le prenotazioni correlate</h4>
+<hr />
+<h3></h3>
+<div>
+    <h4>Dettagli Camera</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NrCamera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrCamera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Elimina camera" class="btn btn-outline-success" /> |
+        </div>
+    }
+</div>

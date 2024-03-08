@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Gestionale_Albergo.Models.Prenotazioni>
+
+@{
+    ViewBag.Title = "ListaPren";
+}
+
+<h2 style="color: #6f6d6b; text-shadow: 1px 1px 9px rgba(1, 0, 0, 0.5);">Prenotazioni</h2>
+
+@if(ViewBag.msgerror != null)
+{
+    <div class="alert alert-warning">@ViewBag.msgerror</div>
+}
+
+<p>
+    @Html.ActionLink("Aggiungi Prenotazione", "Create", null, new { style = "text-decoration: none; color:#6f6d6b; border-radius: 5px; border: 1px solid #6f6d6b; padding: 5px;", onmouseover = "this.style.color='#0D6EFD'", onmouseout = "this.style.color='#6f6d6b'" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPrenotazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrCamera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Acconto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Saldo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPrenotazione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrCamera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezzo) €
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acconto) €
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo)
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "Edit", new { id = item.IdPrenotazione }, new { @class = "text-decoration-none text-light bg-primary p-1 rounded-pill" })
+                @Html.ActionLink("Dettagli", "Details", new { id = item.IdPrenotazione }, new { @class = "text-decoration-none text-light bg-info p-1 rounded-pill" })
+                @Html.ActionLink("Elimina", "Delete", new { id = item.IdPrenotazione, idCliente = item.IdCliente }, new { @class = "text-decoration-none text-light bg-danger p-1 rounded-pill" })
+            </td>
+        </tr>
+    }
+
+</table>

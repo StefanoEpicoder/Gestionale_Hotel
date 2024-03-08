@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm" style="background-color: peachpuff;">
+        <div class="container">
+            <h2>Hotel dei sogni</h2>
+
+            <!--@Html.ActionLink("Hotel", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })-->
+
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Prenotazioni", "ListaPren", "Booking", new { area = "" }, new { @class = "nav-link text primary" })</li>
+                    <li>@Html.ActionLink("Clienti", "CustomList", "Customer", new { area = "" }, new { @class = "nav-link text primary" })</li>
+                    <li>@Html.ActionLink("Camere", "RoomList", "Room", new { area = "" }, new { @class = "nav-link text primary" })</li>
+                    <li>@Html.ActionLink("Servizi", "ServiceList", "Service", new { area = "" }, new { @class = "nav-link text primary" })</li>
+                    <li>@Html.ActionLink("Check-Out", "ListaCk", "Checkout", new { area = "" }, new { @class = "nav-link text primary" })</li>
+                    <li>@Html.ActionLink("Ricerca prenotazioni", "QueriesPage", "Queries", new { area = "" }, new { @class = "nav-link text primary" })</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        
+                            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link text primary" })
+                        
+                    }
+                    else
+                    {
+                        
+                            @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link text primary" })
+                        
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    
+
+    <footer>
+        <p style="color: wheat">&copy; @DateTime.Now.Year - Applicazione ASP.NET di D'Antoni Stefano</p>
+    </footer>
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
